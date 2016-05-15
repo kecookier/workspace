@@ -70,7 +70,6 @@ else
     set autoindent              " always set autoindenting on
 endif " has("autocmd")
 
-:colo desert_my
 " :colo slate
 " :colo delek
 " :colo zellner
@@ -101,20 +100,6 @@ if has("cscope")
     endif
     set csverb
 endif
-
-" convenient to declare protocol
-:iabbrev DECLARE DECLARE()<CR>
-                        \{<CR>
-                        \       <Backspace>DEFINE_HEAD(,);<CR>
-                        \};
-:iabbrev DECLARE_RESULT DECLARE_RESULT()<CR>
-                        \{<CR>
-                        \       <Backspace>DEFINE_RESULT_HEAD(,);<CR>
-                        \};
-:iabbrev DECLARE_INFO DECLARE_INFO()<CR>
-                        \{<CR>
-                        \       <Backspace>DEFINE_INFO_HEAD(,);<CR>
-                        \};
 
 " to use tags
 set previewheight=3
