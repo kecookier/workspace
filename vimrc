@@ -2,7 +2,8 @@ syntax on
 
 set showcmd             " display incomplete commands
 set laststatus=2
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [ENCODING=%{&fileencoding}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M")}
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [ENCODING=%{&fileencoding}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime('%d/%m/%y\ -\ %H:%M')}
+
 set autoindent              " always set autoindenting on
 set cindent
 set shiftwidth=4
@@ -61,7 +62,7 @@ nmap TT :TlistToggle<CR>
 
 ""
 set nocp
-set complete=menu,menuone
+"set complete=menu,menuone
 let OmniCpp_NamespaceSearch=2
 let OmniCpp_GlobalScopeSearch=1
 let OmniCpp_ShowAccess=1
