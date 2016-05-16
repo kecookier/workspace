@@ -1,0 +1,3 @@
+[alias]
+	lg = log --pretty=format:'%C(magenta)%h %C(blue)%<|(35)%ae %ai(%ar) %C(reset)%s'
+	todaylg = log --since=1.day --pretty=format:'%C(magenta)%h %C(blue)%<|(35)%ae %ai(%ar) %C(reset)%s'

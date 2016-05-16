@@ -80,4 +80,11 @@ let OmniCpp_SelectFirstItem=0
 
 set previewheight=3
 
+" set path
+if has ("unix")
+	" set searched directory
+	set path+=/usr/include,/usr/include/c++/4.4.7
+	"set path+=local_code_path
+endif
+
 
