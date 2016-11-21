@@ -14,8 +14,9 @@ set number
 set hlsearch
 set incsearch           " do incremental searching
 "set ffs=unix
-set encoding=utf-8
-set fileencodings=utf-8,cp936
+set encoding=utf-8 "vim内部使用的编码
+set fileencodings=ucs-bom,utf-8,gbk,gb10830  " 文件使用的编码
+"set termencoding=gb18030 " vim显示字符使用的编码
 set nowrap
 set showmatch
 set matchtime=15
