@@ -89,4 +89,38 @@ if has ("unix")
 	"set path+=local_code_path
 endif
 
+"=========================================================================================================
+map <F4> :call TitleDet()<CR>
+function AddTitle()
+  call append(0, "\/\/")
+  call append(1, "\/\/ Author: zhaokuo@pwrd.com (Zhao Kuo)")
+  call append(2, "\/\/ ")
+  call append(3, "\/\/ Description:")
+  call append(4, "\/\/ ")
+  "echohl WarningMsg | echo "Successful in adding file title." | echohl None
+endfunction
 
+function UpdateTitle()
+  normal m'
+  execute '/ *Last modify:/s@:.*$@\=strftime(": %Y-%m-%d %H:%M:%S")."."@'
+  normal ''
+  normal mk
+  execute '/ *File name:/s@:.*$@\=": ".expand("%:t")@'
+  execute "noh"
+  normal 'k
+  "echohl WarningMsg | echo "Successful in updating file title." | echohl None
+endfunction
+
+function TitleDet()
+  let n = 1
+  while n < 10
+    let line = getline(n)
+    if line =~'\/\/\sLast\_smodify:'
+      call UpdateTitle()
+      return
+    endif
+    let n = n + 1
+  endwhile
+  call AddTitle()
+endfunction
+"=========================================================================================================
