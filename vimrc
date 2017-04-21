@@ -20,6 +20,7 @@ set fileencodings=ucs-bom,utf-8,gbk,gb10830  " 文件使用的编码
 set nowrap
 set showmatch
 set matchtime=15
+"set backspace=indent,eol,start " 禁用Backspace键
 
 filetype on
 filetype plugin on
