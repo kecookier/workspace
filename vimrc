@@ -125,3 +125,14 @@ function TitleDet()
   call AddTitle()
 endfunction
 "=========================================================================================================
+
+" http://vim.wikia.com/wiki/Automatic_insertion_of_C/C%2B%2B_header_gates
+function! s:insert_gates()
+    let gatename = substitute(toupper(expand("%:t")), "\\.", "_", "g")
+    execute "normal! i#ifndef _" . gatename . "_"
+    execute "normal! o#define _" . gatename . "_"
+    execute "normal! Go#endif // _" . gatename . "_"
+    normal! kk
+endfunction
+autocmd BufNewFile *.{h,hpp} call <SID>insert_gates()
+
