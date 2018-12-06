@@ -1,3 +1,16 @@
 [alias]
 	lg = log --pretty=format:'%C(magenta)%h %C(green)%ai|%<(20,trunc)%ar %C(blue)%<(35)%ae %C(reset)%s'
 	todaylg = log --since=1.day --pretty=format:'%C(magenta)%h %C(green)%ai|%<(20,trunc)%ar %C(blue)%<(35)%ae %C(reset)%s'
+    st = status
+    tree = log --graph --pretty=oneline --decorate=short --abbrev-commit --all
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+[user]
+    email = zhaokuo_game@163.com
+    name = zhaokuo
+[branch]
+    autosetuprebase = always
+[push]
+    default = simple
