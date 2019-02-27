@@ -1,4 +1,5 @@
 #! /bin/sh
+#https://raw.githubusercontent.com/kecookier/workspace/master/bootstrap.sh
 
 set -e
 set -x
