@@ -3,7 +3,7 @@
 set -e
 set -x
 
-[ ! -d "$HOME/.local" ] && mkdir -p "$HOME/.local" 2> /dev/null
+[ ! -d "$HOME/.local" ] && mkdir -p "$HOME/.local" 2>/dev/null
 cd $HOME/.local
 git clone https://github.com/kecookier/workspace.git
 
