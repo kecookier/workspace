@@ -12,7 +12,7 @@ git clone https://github.com/kecookier/workspace.git
 echo "install .bashrc.."
 echo 'source ~/.local/workspace/init.sh' >> ~/.bashrc
 echo "install .tmux.conf.."
-echo 'source ~/.local/workspace/tmux.config' >> ~/.tmux.conf
+echo 'source ~/.local/workspace/tmux.conf' >> ~/.tmux.conf
 echo "install .vimrc"
 echo 'source ~/.local/workspace/vimrc' >> ~/.vimrc
 
