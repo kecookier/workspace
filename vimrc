@@ -72,7 +72,7 @@ set backspace=indent,eol,start
 map <F4> :call TitleDet()<CR>
 function AddTitle()
   call append(0, "\/\/")
-  call append(1, "\/\/ Authors      : Zhao,Kuo (zhaokuo@pwrd.com)")
+  call append(1, "\/\/ Authors      : Zhao,Kuo (zhaokuo_game@163.com)")
   call append(2, "\/\/ Create Time  : ".strftime("%Y-%m-%d %H:%M:%S"))
   call append(3, "\/\/ Last modify  : ".strftime("%Y-%m-%d %H:%M:%S"))
   call append(4, "\/\/ File name    : ".expand("%:t"))
