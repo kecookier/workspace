@@ -1,0 +1,21 @@
+#!/bin/bash
+
+DST_DIR=.
+OPT=
+PIPLE=
+
+if [ $# -ge 2 ]; then
+    DST_DIR=$2
+fi
+
+if [ $# -ge 3 ]; then
+    OPT=$3
+fi
+
+if [ $# -ge 4 ]; then
+    PIPLE=$4
+fi
+
+echo "grep -n -R -I --color=always --exclude=tags $OPT '$1' $DST_DIR${PIPLE}"
+
+grep -n -R -I --color=always --exclude=tags $OPT "$1" $DST_DIR${PIPLE}
