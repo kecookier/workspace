@@ -221,7 +221,9 @@ map <silent> <leader>ka :%pyf /usr/share/clang/clang-format.py<cr>
 imap <C-K> <c-o>:pyf /usr/share/clang/clang-format.py<cr>
 function! Formatonsave()
     let l:formatdiff = 1
-    pyf /usr/share/clang/clang-format.py
+"    pyf /usr/share/clang/clang-format.py
+" in macos
+    py3f /usr/local/Cellar/clang-format/14.0.3/share/clang/clang-format.py
 endfunction
 autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
 " // clang-format off
