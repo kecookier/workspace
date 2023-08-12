@@ -7,9 +7,6 @@
     branch = auto
     diff = auto
     status = auto
-[user]
-    email = zhaokuo_game@163.com
-    name = zhaokuo
 [branch]
     autosetuprebase = always
 [push]
