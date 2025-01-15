@@ -1,5 +1,5 @@
 [alias]
-	lg = log --pretty=format:'%C(magenta)%h %C(green)%ai|%<(20,trunc)%ar %C(blue)%<(35)%ae %C(reset)%s'
+    lg = log --pretty=format:'%C(yellow)%h%Creset - %C(green)%s%Creset %C(red)%d%Creset (%C(cyan)%cr%Creset) <%C(magenta)%an%Creset>' --color
 	todaylg = log --since=1.day --pretty=format:'%C(magenta)%h %C(green)%ai|%<(20,trunc)%ar %C(blue)%<(35)%ae %C(reset)%s'
     st = status
     tree = log --graph --pretty=oneline --decorate=short --abbrev-commit --all
@@ -11,3 +11,6 @@
     autosetuprebase = always
 [push]
     default = simple
+[user]
+	name = zhaokuo03
+	email = zhaokuo03@meituan.com

@@ -258,12 +258,14 @@ au! BufEnter *.c,*.cpp let b:fswitchlocs='reg:/src/include/,reg:|src|include/**|
 " Bundle: vim-colors-solarized
 set background=dark
 "set background=light
-let g:solarized_visibility = "low"
-"colorscheme solarized
-"colorscheme molokai
+"let g:solarized_visibility = "low"
+colorscheme solarized
 let g:molokai_original = 1
 let g:rehash256 = 1
 set t_Co=256
+if (has("termguicolors"))
+    set termguicolors
+endif
 
 " " }}}
 
@@ -555,7 +557,7 @@ set term=screen-256color
 set cursorline
 set cc=120
 :hi CursorLine cterm=underline ctermbg=none
-:colors zenburn
+":colors zenburn
 
 " execute project related configuration in current directory "{{{
 autocmd VimEnter * :call s:ReadSession()
