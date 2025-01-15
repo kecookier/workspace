@@ -10,6 +10,33 @@ setlocal foldlevel=1
 " 新建的文件，刚打开的文件不折叠
 autocmd! BufNewFile,BufRead * setlocal nofoldenable
 
+" 判断是否在 Windows 系统下
+if (has("win32") || has("win64") || has("win32unix"))
+    let g:isWin = 1
+else
+    let g:isWin = 0
+endif
+
+" 判断是否在 GUI 环境下运行
+if has("gui_running")
+    let g:isGUI = 1
+else
+    let g:isGUI = 0
+endif
+
+" 判断是否在 macOS 系统下
+if has('mac')
+    let g:isMac = 1
+else
+    let g:isMac = 0
+endif
+
+if has('unix')
+    let g:isLinux = 1
+else
+    let g:isLinux = 0
+endif
+
 
 " Plugins " {{{
 
@@ -238,9 +265,9 @@ function! FormatWithClang()
     endif
 
     " Detect operating system
-    if has("mac")
+    if (g:isMac)
         let l:clang_format_path = '/usr/local/Cellar/clang-format/14.0.3/share/clang/clang-format.py'
-    elseif has("unix")
+    elseif (g:isLinux)
         let l:clang_format_path = '/usr/local/llvm11-1/share/clang/clang-format.py'
     else
         echo "Unsupported OS"
@@ -287,30 +314,22 @@ au! BufEnter *.c,*.cpp let b:fswitchlocs='reg:/src/include/,reg:|src|include/**|
 
 
 " Bundle: vim-colors-solarized
-set background=dark
-"set background=light
-"let g:solarized_visibility = "low"
-colorscheme solarized
-let g:molokai_original = 1
-let g:rehash256 = 1
-set t_Co=256
-if (has("termguicolors"))
-    set termguicolors
+syntax enable
+if (g:isMac)
+    " 在 GUI 环境下（如 MacVim），不需要 termguicolors
+    set background=dark " 或者 light，根据你的喜好选择
+    colorscheme solarized
+else
+    " 在终端环境下，使用 termguicolors
+    if has('termguicolors')
+        set termguicolors
+    endif
+    set background=dark " 或者 light，根据你的喜好选择
+    colorscheme solarized
 endif
-
 " " }}}
 
-" set基础设置 " {{{
-if (has("win32") || has("win64") || has("win32unix"))
-    let g:isWin = 1
-else
-    let g:isWin = 0
-endif
-if has("gui_running")
-    let g:isGUI = 1
-else
-    let g:isGUI = 0
-endif
+
 set nobackup        " 关闭备份
 set noswapfile      " 不使用swp文件，注意，错误退出后无法恢复
 set lbr             " 在breakat字符处而不是最后一个字符处断行
@@ -377,7 +396,6 @@ nn <C-K> :bp<cr>
 " }}}
 
 
-syntax enable       " 语法高亮
 filetype plugin on  " 文件类型插件
 autocmd BufEnter * :syntax sync fromstart "Highlight from start of file
 
@@ -582,13 +600,11 @@ au FileType python set smartindent cinwords=if,elif,else,for,while,try,except,fi
 augroup filetype
     autocmd! BufRead,BufNewFile BUILD set filetype=blade
 augroup end
-hi ColorColumn ctermbg=Black guibg=lightgrey
-set term=xterm
-set term=screen-256color
-set cursorline
-set cc=120
-:hi CursorLine cterm=underline ctermbg=none
-":colors zenburn
+"hi ColorColumn ctermbg=Black guibg=lightgrey
+"set term=screen-256color
+"set cursorline
+"set cc=120
+":hi CursorLine cterm=underline ctermbg=none
 
 " execute project related configuration in current directory "{{{
 autocmd VimEnter * :call s:ReadSession()
