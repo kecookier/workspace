@@ -12,5 +12,8 @@
 [push]
     default = simple
 [user]
-	name = zhaokuo03
-	email = zhaokuo03@meituan.com
+    name = zhaokuo03
+    email = zhaokuo03@meituan.com
+    signingkey = 653C26BC32B06FF2
+[commit]
+    gpgsign = true
