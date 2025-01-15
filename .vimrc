@@ -215,20 +215,51 @@ let g:LookupFile_LookupFunc = 'LookupFile_IgnoreCaseFunc'
 " https://clang.llvm.org/docs/ClangFormat.html?spm=ata.13261165.0.0.2efb343d5C1RZq#vim-integration
 " " .clang-format格式说明文档
 " https://clang.llvm.org/docs/ClangFormatStyleOptions.html
-" map <silent> <leader>kk :pyf /usr/local/share/clang/clang-format.py<cr>
-map <silent> <leader>kk :pyf /usr/share/clang/clang-format.py<cr>
-map <silent> <leader>ka :%pyf /usr/share/clang/clang-format.py<cr>
-imap <C-K> <c-o>:pyf /usr/share/clang/clang-format.py<cr>
-function! Formatonsave()
-    let l:formatdiff = 1
-"    pyf /usr/share/clang/clang-format.py
-" in macos
-    py3f /usr/local/Cellar/clang-format/14.0.3/share/clang/clang-format.py
-endfunction
-autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
 " // clang-format off
 " // 这段代码我不想被格式化
 " // clang-format on
+
+function! FindClangFormatFile()
+    let l:dir = expand('%:p:h')
+    while l:dir !=# '/'
+        if filereadable(l:dir . '/.clang-format')
+            return l:dir . '/.clang-format'
+        endif
+        let l:dir = fnamemodify(l:dir, ':h')
+    endwhile
+    return ''
+endfunction
+
+function! FormatWithClang()
+    let l:clang_format_file = FindClangFormatFile()
+    if l:clang_format_file == ''
+        echo "No .clang-format file found in parent directories."
+        return
+    endif
+
+    " Detect operating system
+    if has("mac")
+        let l:clang_format_path = '/usr/local/Cellar/clang-format/14.0.3/share/clang/clang-format.py'
+    elseif has("unix")
+        let l:clang_format_path = '/usr/local/llvm11-1/share/clang/clang-format.py'
+    else
+        echo "Unsupported OS"
+        return
+    endif
+
+    let l:command = 'py3f ' . l:clang_format_path . ' --style=file --assume-filename=' . l:clang_format_file
+    execute l:command
+endfunction
+
+map <silent> <leader>kk :call FormatWithClang()<CR>
+map <silent> <leader>ka :%call FormatWithClang()<CR>
+imap <C-K> <c-o>:call FormatWithClang()<CR>
+
+function! Formatonsave()
+    call FormatWithClang()
+endfunction
+
+autocmd BufWritePre *.h,*.cc,*.cpp call Formatonsave()
 
 
 " Bundle: Winmanager
