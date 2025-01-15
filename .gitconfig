@@ -6,7 +6,7 @@
 [color]
     branch = auto
     diff = auto
-    status = auto
+    status = always
 [branch]
     autosetuprebase = always
 [push]
