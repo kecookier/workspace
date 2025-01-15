@@ -148,19 +148,39 @@ augroup filetype
     autocmd! BufRead,BufNewFile BUILD set filetype=blade
 augroup end
 
-" 项目相关配置
-autocmd VimEnter * :call s:ReadSession()
+" 会话管理函数
+
+" 读取会话文件
 function! s:ReadSession()
     let session_file = "./session.vim"
     if filereadable(session_file)
-        execute "so " . session_file
+        execute "source " . session_file
     endif
 endfunction
 
-autocmd VimLeave * :call s:WriteSession()
+" 写入会话文件（仅当 session.vim 存在时）
 function! s:WriteSession()
     let session_file = "./session.vim"
     if filereadable(session_file)
         execute "mks! " . session_file
     endif
 endfunction
+
+" 创建会话文件（如果不存在）
+function! s:CreateSession()
+    let session_file = "./session.vim"
+    if !filereadable(session_file)
+        execute "mks! " . session_file
+        echo "Session created: " . session_file
+    else
+        echo "Session file already exists: " . session_file
+    endif
+endfunction
+
+" 自动命令
+autocmd VimEnter * :call s:ReadSession()
+autocmd VimLeavePre * :call s:WriteSession()
+
+" 创建会话的命令（简写为 CS）
+command! CS call s:CreateSession()
+
